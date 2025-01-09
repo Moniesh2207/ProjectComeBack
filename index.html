@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hey</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .content-container {
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            width: 80%;
+            height: 100%;
+            margin: 40px auto;
+            max-width: 1000px;
+            text-align: center;
+            padding: 60px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background: url('pictures/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .content-frame {
+            padding: 20px;
+            width: 80%;
+            height: 80%;
+            background-color: white;
+            background: url('pictures/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 5px solid #ddd;
+            max-width: 100%;
+            height: auto;
+            margin-block: 20px;
+            border-radius: 10px;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+        .slides {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .fade {
+            animation: fade 2s ease-in-out;
+        }
+        @keyframes fade {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
+        }
+        .centered-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #content {
+            text-align: justify;
+            color: white;
+            font-family: Calibri;
+        }
+        #show-content-btn {
+            color: white;
+            font-family: Copperplate;
+        }
+        .qr-code {
+            padding-inline: 10px;
+            float: right;
+        }
+        #click-image {
+            transition: transform 0.5s;
+            width: 200px; 
+            height: 150px; 
+        }
+        #click-image.zoomed {
+            transform: scale(2);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2);
+            width: auto; 
+            height: auto;
+            z-index: 1; 
+        }
+    </style>
+</head>
+<body>
+
+    <button id="show-content-btn" class="centered-btn">CLICK HERE</button>
+    <div id="content-container" class="content-container" style="display: none;">
+        <div class="content-frame">
+            <div class="slideshow-container">
+                <img class="slides fade" src="pictures/photo1.jpg" alt="Image 1">
+                <img class="slides fade" src="pictures/photo2.jpg" alt="Image 2">
+                <img class="slides fade" src="pictures/photo3.jpg" alt="Image 3">
+                <img class="slides fade" src="pictures/photo4.jpg" alt="Image 4">
+                <img class="slides fade" src="pictures/photo5.jpg" alt="Image 5">
+                <video class="slides fade" controls autoplay muted>
+                    <source src="videos/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p id="content">
+                <img src="pictures/qrcode.png" id="click-image" alt="QR Code" class="qr-code" style="width: 100px; height: 100px;">
+               Hᴇʏ ʜɪ 🖖
+			Hᴀᴘᴘʏ ɴᴇᴡ ᴊᴏᴜʀɴᴇʏ ᴏꜰ Yᴏᴜʀ ʟɪꜰᴇ🚶‍♀...
+			Yᴏᴜ 👑 Dᴇꜱᴇʀᴠᴇ ᴀʟʟ Lᴏᴠᴇ ᴀɴᴅ Cᴀʀᴇ ɪɴ ᴛʜɪꜱ Aᴄᴄᴜʀꜱᴇᴅ Wᴏʀʟᴅ 🌍 .
+			Rᴇᴍᴇᴍʙᴇʀ ᴍʏ ᴡᴏʀᴅꜱ 💭 ɪ ᴡɪʟʟ ɴᴇᴠᴇʀ ꜰᴏʀɢᴇᴛ ʏᴏᴜ ᴀɴʏᴡᴀʏ & ʏᴏᴜ ᴀʀᴇ ᴄʀᴜᴄɪᴀʟ ꜱᴏᴜʟ ꜰᴏʀ Mᴇ 😇 
+			🤍 Tᴀᴋᴇ ᴄᴀʀᴇ ᴏꜰ ʏᴏᴜʀꜱᴇʟꜰ Fᴏʀᴇᴠᴇʀ 😉 Bʏᴇ Dᴜᴅᴇ ʙᴀᴛʜᴀʀᴀᴍᴀ ɪʀᴜᴋᴀʀᴀ ᴇᴅᴀᴛʜᴜʟᴀ ɪʀᴜ 😜
+            </p>
+<audio id="audio" autoplay loop muted>
+    <source src="music/music.mp3" type="audio/mp3">
+</audio>
+
+        </div>
+    </div>
+
+    <script>
+        function input() {
+            let txt = prompt("KeyWord : ");
+            if (txt != "admin") {
+                alert("Try Again :(");
+                exit();
+            }
+        }
+
+        let zoomed = false;
+        document.getElementById("click-image").addEventListener("click", function() {
+            if (!zoomed) {
+                this.classList.add("zoomed");
+                zoomed = true;
+            } else {
+                this.classList.remove("zoomed");
+                zoomed = false;
+            }
+        });
+
+        document.getElementById('show-content-btn').addEventListener('click', function() {
+            input();
+            var audio = document.getElementById("audio");
+            audio.volume = 1;
+            audio.muted = false;
+            audio.play();
+            alert("Wᴇʟᴄᴏᴍᴇ 🎉 Yᴏᴜ ᴅɪᴅ ɪᴛ 😜");
+            document.body.style.backgroundColor = 'transparent';
+            document.getElementById('show-content-btn').style.display = 'none';
+            document.getElementById('content-container').style.display = 'flex';
+
+            // Start slideshow
+            let slideIndex = 0;
+            const slides = document.getElementsByClassName("slides");
+
+            function showSlides() {
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                    if (slides[i].tagName === "VIDEO") {
+                        slides[i].pause();
+                    }
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) { slideIndex = 1; }
+
+                const currentSlide = slides[slideIndex - 1];
+                currentSlide.style.display = "block";
+
+                if (currentSlide.tagName === "VIDEO") {
+                    currentSlide.play();
+                    currentSlide.onended = function() {
+                        showSlides(); 
+                    };
+                } else {
+                    setTimeout(showSlides, 4000); 
+                }
+            }
+            showSlides();
+        });
+    </script>
+</body>
+</html>
